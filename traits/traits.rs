@@ -3,14 +3,24 @@ struct Circle {
 	radius: f64,
 }
 
+struct Square {
+	side: f64,
+}
+
+trait Area {
+	fn area(&self) -> f64;
+}
+
 impl Area for Circle {
 	fn area(&self) -> f64 {
 		std::f64::consts::PI * (self.radius * self.radius)
 	}
 }
 
-trait Area {
-	fn area(&self) -> f64;
+impl Area for Square {
+	fn area(&self) -> f64 {
+		self.side * self.side
+	}
 }
 
 fn main() {
@@ -18,5 +28,11 @@ fn main() {
 		radius: 5.0,
 	};
 
-	println!("Area is {}", c.area());
+	println!("Area of a circle is {}", c.area());
+
+	let s = Square {
+		side: 4.0,
+	};
+
+	println!("Area of a square is {}", s.area());
 }
